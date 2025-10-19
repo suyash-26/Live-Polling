@@ -1,7 +1,9 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 export default function PollDetails() {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-[#101827] text-white w-full px-4 md:px-6 flex flex-col">
       <div className="poll-details-header flex justify-between py-2 md:py-5 items-center">
@@ -17,18 +19,18 @@ export default function PollDetails() {
       </div>
       <div className="inline-tabs">
         <div className="flex gap-3 md:gap-7 mt-2 md:mt-4">
-          <p className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
+          <p onClick={()=>{navigate("/poll/hello/live")}} className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
             Live
           </p>
-          <p className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
+          <p onClick={()=>{navigate("/poll/hello/questions")}} className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
             Questions
           </p>
-           <p className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
+          <p onClick={()=>{navigate("/poll/hello/results")}} className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
             Results
           </p>
         </div>
       </div>
-      <div className="flex-1">
+      <div className="flex-1 overflow-auto">
         <Outlet />
       </div>
     </div>

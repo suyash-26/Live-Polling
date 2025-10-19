@@ -9,6 +9,8 @@ import Signup from "./auth/components/Signup";
 import Welcome from "./components/Welcome";
 import PollDetails from "./components/PollDetails";
 import Live from "./components/live/Live";
+import Results from "./components/results/Results";
+import Questions from "./components/questions/Questions";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path=":pollId" element={<PollDetails />}>
               <Route index element={<Live/>} />
               <Route path="live" element={<Live/>} />
+              <Route path="questions" element={<Questions/>} />
+              <Route path="results" element={<Results/>} />
             </Route>
             <Route
               path="*"
