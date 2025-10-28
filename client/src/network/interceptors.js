@@ -9,7 +9,6 @@ const api = axios.create({
 // Request interceptor: Add token and log
 api.interceptors.request.use(
   (config) => {
-    console.log(`Sending ${config.method.toUpperCase()} request to ${config.url}`);
     return config;
   },
   (error) => {
@@ -21,14 +20,13 @@ api.interceptors.request.use(
 // Response interceptor: Handle errors and log
 api.interceptors.response.use(
   (response) => {
-    console.log('Response:', response.status, response.data);
     return response;
   },
   (error) => {
     if (error.response && error.response.status === 401) {
       console.error('Unauthorized, redirecting to login...');
       // Example: Redirect to login
-      window.location.href = '/login';
+      // window.location.href = '/login';
     }
     return Promise.reject(error);
   }

@@ -4,8 +4,7 @@ const auth = require('../middleware/auth');
 const Poll = require('../models/Poll');
 
 // Create poll (admin only)
-router.post('/', auth, async (req, res) => {
-  console.log("req",req.user);
+router.post('/create', auth, async (req, res) => {
   try {
     const poll = new Poll({ ...req.body, owner: req.user.id });
     await poll.save();
@@ -16,7 +15,7 @@ router.post('/', auth, async (req, res) => {
 });
 
 // Get all user polls
-router.get('/', auth, async (req, res) => {
+router.get('/getUserPolls', auth, async (req, res) => {
   const polls = await Poll.find({ owner: req.user.id });
   res.json(polls);
 });

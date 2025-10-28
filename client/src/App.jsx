@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AdminDashboard from "./components/AdminDashboard";
 import PresenterView from "./components/PresenterView";
@@ -11,10 +11,15 @@ import PollDetails from "./components/PollDetails";
 import Live from "./components/live/Live";
 import Results from "./components/results/Results";
 import Questions from "./components/questions/Questions";
+import api from "./network/interceptors";
+import { AuthContext } from "./auth/contextProvider/AuthProvider";
 
 function App() {
+  const { checkAuth } = useContext(AuthContext);
+  useEffect(() => {
+    checkAuth();
+  }, []);
   return (
-    <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<AdminDashboard />}>
@@ -23,10 +28,10 @@ function App() {
           <Route path="/poll" element={<AdminDashboard />}>
             <Route index element={<Welcome />} />
             <Route path=":pollId" element={<PollDetails />}>
-              <Route index element={<Live/>} />
-              <Route path="live" element={<Live/>} />
-              <Route path="questions" element={<Questions/>} />
-              <Route path="results" element={<Results/>} />
+              <Route index element={<Live />} />
+              <Route path="live" element={<Live />} />
+              <Route path="questions" element={<Questions />} />
+              <Route path="results" element={<Results />} />
             </Route>
             <Route
               path="*"
@@ -40,7 +45,6 @@ function App() {
           <Route path="*" element={<h2>404: Page Not Found</h2>} />
         </Routes>
       </div>
-    </Router>
   );
 }
 

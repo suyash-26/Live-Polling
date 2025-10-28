@@ -1,5 +1,6 @@
 // frontend/src/components/Modal.jsx
 import React, { useEffect, useRef } from "react";
+import { useCallback } from "react";
 import { createPortal } from "react-dom";
 
 const Modal = ({ isOpen, onClose, title, children }) => {
@@ -20,6 +21,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
     };
 
     if (isOpen) {
+      console.log("im runngin")
       document.addEventListener("mousedown", handleOutsideClick);
       document.addEventListener("keydown", handleEscapeKey);
       // Trap focus within modal

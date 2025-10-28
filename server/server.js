@@ -6,6 +6,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
+const cookieParser = require('cookie-parser');
 const User = require("./models/User"); // Assume you add a User model for auth
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.json());
+app.use(cookieParser());
 
 // DB Connect
 mongoose
@@ -30,8 +32,7 @@ mongoose
 app.use("/api/polls", require("./routes/polls"));
 app.use('/api/auth', require('./routes/auth')); // Add auth routes below
 
-// Basic auth route (expand)
-app.use("/api/auth", require("./routes/auth"));
+
 
 // global error handler middleware
 app.use(require("./middleware/errorHandler"))

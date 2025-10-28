@@ -10,15 +10,11 @@ export default function Login() {
   const navigate = useNavigate();
 
   const { login, state } = useContext(AuthContext);
+  console.log("stat",state)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
       const res = await login({ email, password });
-      console.log(res.data);
-    } catch (err) {
-      console.error(err);
-    }
   };
 
   return (
@@ -46,7 +42,7 @@ export default function Login() {
             Login
           </button>
           {
-            state.error && <p>{state.error}</p>
+            state.error && <p className="text-white">{state.error}</p>
           }
           <p className="text-white text-center">No Account? <span onClick={()=> navigate("/signup")} className="text-[#FF4081] cursor-pointer">Create One</span> </p>
         </form>
