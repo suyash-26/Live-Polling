@@ -25,7 +25,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
       document.addEventListener("mousedown", handleOutsideClick);
       document.addEventListener("keydown", handleEscapeKey);
       // Trap focus within modal
-      modalRef.current?.focus();
+      // modalRef.current?.focus();
     }
 
     return () => {

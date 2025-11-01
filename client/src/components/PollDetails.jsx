@@ -1,8 +1,9 @@
 import React from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 export default function PollDetails() {
   const navigate = useNavigate();
+  const { pollId } = useParams();
 
   return (
     <div className="bg-[#101827] text-white w-full px-4 md:px-6 flex flex-col">
@@ -19,13 +20,28 @@ export default function PollDetails() {
       </div>
       <div className="inline-tabs">
         <div className="flex gap-3 md:gap-7 mt-2 md:mt-4">
-          <p onClick={()=>{navigate("/poll/hello/live")}} className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
+          <p
+            onClick={() => {
+              navigate(`/poll/${pollId}/live`);
+            }}
+            className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500"
+          >
             Live
           </p>
-          <p onClick={()=>{navigate("/poll/hello/questions")}} className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
+          <p
+            onClick={() => {
+              navigate(`/poll/${pollId}/questions`);
+            }}
+            className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500"
+          >
             Questions
           </p>
-          <p onClick={()=>{navigate("/poll/hello/results")}} className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500">
+          <p
+            onClick={() => {
+              navigate(`/poll/${pollId}/results`);
+            }}
+            className="text-xs md:text-lg text-underline border-b-3 md:border-b-5 rounded border-b-red-300 px-1 md:px-2 pt-1 md:pt-2 md:pb-1 hover:bg-gray-500"
+          >
             Results
           </p>
         </div>

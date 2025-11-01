@@ -10,7 +10,7 @@ export default function Sidebar({ children }) {
   const { state, dispatch, logout } = useContext(AuthContext);
   const [pollModal, setPollModal] = useState(false);
   const [pollTitle, setPollTitle] = useState("");
-  const [polls, setPolls] = useState(["Hello", "how"]);
+  const [polls, setPolls] = useState([]);
   const navigate = useNavigate();
 
   const createPoll = async () => {
@@ -97,7 +97,7 @@ export default function Sidebar({ children }) {
                 <div
                   className="mt-2"
                   onClick={() => {
-                    navigate("/poll/hello");
+                    navigate(`/poll/${poll._id}`);
                   }}
                 >
                   <h1 className=" mb-2 p-1 md:p-2 rounded-[10px] bg-gradient-to-r from-blue-500 to-purple-600 text-white text-transparent">

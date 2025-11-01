@@ -55,4 +55,20 @@ router.post('/:id/vote', async (req, res) => {
   }
 });
 
+// add questions
+router.post("/addQuesion",auth,async(req,res,next)=>{
+  const {pollId,question} = req.body;
+  try{
+    const poll = await Poll.findById(pollId);
+    if(!poll){
+      return res.status(404).json({msg:"Poll not found"});
+    }
+    poll.questions.push(question);
+    await poll.save();
+    res.json({msg:"Question added successfully"});
+  }catch(err){
+    res.status(500).json({msg:err.message});
+  }
+})
+
 module.exports = router;
